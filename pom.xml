@@ -33,4 +33,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>my-project</finalName>
+    </build>
+
 </project>
