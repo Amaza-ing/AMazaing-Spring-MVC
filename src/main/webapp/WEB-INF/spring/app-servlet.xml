@@ -2,26 +2,21 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
           http://www.springframework.org/schema/beans
           https://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/mvc
-          https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+          https://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/context
+          https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Controlador registrado manualmente como bean -->
-    <bean id="homeController"
-          class="com.amazaing.myproject.controller.HomeController"/>
+    <!-- Activa el soporte de Spring MVC basado en anotaciones -->
+    <mvc:annotation-driven />
 
-    <!-- Mapeo de URLs mediante XML -->
-    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="/">homeController</prop>
-                <prop key="/home">homeController</prop>
-            </props>
-        </property>
-    </bean>
+    <!-- Busca automáticamente controladores, servicios y otros componentes -->
+    <context:component-scan base-package="com.amazaing.myproject" />
 
     <!-- Resolución de vistas JSP -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
