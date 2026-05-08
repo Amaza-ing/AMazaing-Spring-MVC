@@ -2,8 +2,10 @@ package com.amazaing.myproject.controller;
 
 import com.amazaing.myproject.model.Course;
 import com.amazaing.myproject.service.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,8 +54,15 @@ public class CourseController {
 
     @PostMapping
     public String saveCourse(
-            @ModelAttribute("course") Course course,
+            @Valid @ModelAttribute("course") Course course,
+            BindingResult bindingResult,
+            Model model,
             RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("pageTitle", "Crear nuevo curso");
+            return "courses/form";
+        }
 
         courseService.save(course);
 

@@ -35,6 +35,7 @@
           <div class="form-group">
             <form:label path="title">Título</form:label>
             <form:input path="title" cssClass="input" />
+            <form:errors path="title" cssClass="error" />
           </div>
 
           <div class="form-group">
@@ -45,11 +46,13 @@
               <form:option value="Intermedio" label="Intermedio" />
               <form:option value="Avanzado" label="Avanzado" />
             </form:select>
+            <form:errors path="level" cssClass="error" />
           </div>
 
           <div class="form-group">
             <form:label path="durationInHours">Duración en horas</form:label>
             <form:input path="durationInHours" type="number" cssClass="input" />
+            <form:errors path="durationInHours" cssClass="error" />
           </div>
 
           <div class="form-actions">
