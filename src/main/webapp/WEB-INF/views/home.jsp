@@ -15,7 +15,7 @@
       <nav class="nav">
         <a href="${pageContext.request.contextPath}/home">Inicio</a>
         <a href="${pageContext.request.contextPath}/courses">Cursos</a>
-        <a href="${pageContext.request.contextPath}/about">Cursos</a>
+        <a href="${pageContext.request.contextPath}/about">Sobre el curso</a>
       </nav>
     </header>
 
