@@ -9,8 +9,8 @@ public class HomeController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-        model.addAttribute("pageTitle", "Bienvenido a Mi Proyecto");
-        model.addAttribute("message", "Nuestra primera aplicación Spring MVC funciona correctamente.");
+        model.addAttribute("pageTitle", "Bienvenido al curso");
+        model.addAttribute("message", "Ahora estamos usando controladores con anotaciones.");
         model.addAttribute("courseName", "Curso de Spring MVC");
 
         return "home";
