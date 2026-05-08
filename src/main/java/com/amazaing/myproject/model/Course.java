@@ -1,10 +1,21 @@
 package com.amazaing.myproject.model;
 
+import jakarta.validation.constraints.*;
+
 public class Course {
 
     private Long id;
+
+    @NotBlank(message = "El título es obligatorio.")
+    @Size(min = 3, max = 80, message = "El título debe tener entre 3 y 80 caracteres.")
     private String title;
+
+    @NotBlank(message = "El nivel es obligatorio.")
     private String level;
+
+    @NotNull(message = "La duración es obligatoria.")
+    @Min(value = 1, message = "La duración mínima es de 1 hora.")
+    @Max(value = 200, message = "La duración máxima es de 200 horas.")
     private Integer durationInHours;
 
     public Course() {
