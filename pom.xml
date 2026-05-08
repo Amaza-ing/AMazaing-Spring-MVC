@@ -33,7 +33,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSTL API para usar etiquetas como c:forEach en JSP -->
+        <!--  JSTL API para usar etiquetas como c:forEach en JSP  -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -41,7 +41,7 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Implementación de JSTL -->
+        <!--  Implementación de JSTL  -->
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
