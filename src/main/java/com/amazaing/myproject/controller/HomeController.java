@@ -15,5 +15,13 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/about")
+    public String about(Model model) {
+        model.addAttribute("pageTitle", "Sobre este curso");
+        model.addAttribute("description", "Este curso introduce el desarrollo de aplicaciones web con Spring MVC paso a paso.");
+
+        return "about";
+    }
 }
 
