@@ -45,7 +45,11 @@
                 <td>${course.title}</td>
                 <td>${course.level}</td>
                 <td>${course.durationInHours} horas</td>
-                <td></td>
+                <td>
+                  <a href="${pageContext.request.contextPath}/courses/detail?id=${course.id}">
+                    Ver detalle
+                  </a>
+                </td>
               </tr>
             </c:forEach>
           </tbody>
