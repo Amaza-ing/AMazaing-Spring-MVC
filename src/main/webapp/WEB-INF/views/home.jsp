@@ -11,6 +11,13 @@
     />
   </head>
   <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="${pageContext.request.contextPath}/home">Inicio</a>
+        <a href="${pageContext.request.contextPath}/courses">Cursos</a>
+      </nav>
+    </header>
+
     <main class="container">
       <section class="card">
         <h1>${pageTitle}</h1>
@@ -25,13 +32,18 @@
         <hr />
 
         <p>
-          Esta página no se ha abierto directamente. Ha sido devuelta por un
-          controlador de Spring MVC.
+          Antes usamos un controlador clásico configurado manualmente en XML.
         </p>
 
-        <p class="small">
-          URL alternativa:
-          <a href="${pageContext.request.contextPath}/home">/home</a>
+        <p>
+          Ahora estamos usando controladores con anotaciones como
+          <code>@Controller</code> y <code>@GetMapping</code>.
+        </p>
+
+        <p>
+          <a class="button" href="${pageContext.request.contextPath}/courses">
+            Ver listado de cursos
+          </a>
         </p>
       </section>
     </main>
