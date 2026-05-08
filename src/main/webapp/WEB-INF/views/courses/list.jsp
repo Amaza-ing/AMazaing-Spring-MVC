@@ -29,6 +29,19 @@
           desde un servicio.
         </p>
 
+        <c:if test="${not empty successMessage}">
+          <div class="success">${successMessage}</div>
+        </c:if>
+
+        <p>
+          <a
+            class="button"
+            href="${pageContext.request.contextPath}/courses/new"
+          >
+            Crear nuevo curso
+          </a>
+        </p>
+
         <table class="table">
           <thead>
             <tr>
