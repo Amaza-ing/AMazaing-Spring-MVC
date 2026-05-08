@@ -1,23 +1,19 @@
 package com.amazaing.myproject.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-public class HomeController implements Controller {
+@Controller
+public class HomeController {
 
-    @Override
-    public ModelAndView handleRequest(
-            HttpServletRequest request,
-            HttpServletResponse response) {
+    @GetMapping({"/", "/home"})
+    public String home(Model model) {
+        model.addAttribute("pageTitle", "Bienvenido a Mi Proyecto");
+        model.addAttribute("message", "Nuestra primera aplicación Spring MVC funciona correctamente.");
+        model.addAttribute("courseName", "Curso de Spring MVC");
 
-        ModelAndView modelAndView = new ModelAndView("home");
-
-        modelAndView.addObject("pageTitle", "Bienvenido a Mi Proyecto");
-        modelAndView.addObject("message", "Nuestra primera aplicación Spring MVC funciona correctamente.");
-        modelAndView.addObject("courseName", "Curso de Spring MVC");
-
-        return modelAndView;
+        return "home";
     }
 }
+
