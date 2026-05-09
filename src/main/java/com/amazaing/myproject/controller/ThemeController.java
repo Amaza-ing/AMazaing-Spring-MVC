@@ -1,5 +1,6 @@
 package com.amazaing.myproject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +13,21 @@ public class ThemeController {
 
     @GetMapping("/change")
     public String changeTheme(
-            @RequestParam(defaultValue = "light") String theme,
-            HttpSession session) {
+            @RequestParam(name = "theme", defaultValue = "light") String theme,
+            HttpSession session,
+            HttpServletRequest request) {
 
         if (!theme.equals("dark")) {
             theme = "light";
         }
 
         session.setAttribute("theme", theme);
+
+        String referer = request.getHeader("Referer");
+
+        if (referer != null) {
+            return "redirect:" + referer;
+        }
 
         return "redirect:/home";
     }
