@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
-<html lang="${pageContext.response.locale.language}">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <title>${pageTitle}</title>
