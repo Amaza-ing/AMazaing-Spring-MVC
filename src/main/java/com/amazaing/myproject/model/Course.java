@@ -6,16 +6,16 @@ public class Course {
 
     private Long id;
 
-    @NotBlank(message = "El título es obligatorio.")
-    @Size(min = 3, max = 80, message = "El título debe tener entre 3 y 80 caracteres.")
+    @NotBlank(message = "{course.title.notBlank}")
+    @Size(min = 3, max = 80, message = "{course.title.size}")
     private String title;
 
-    @NotBlank(message = "El nivel es obligatorio.")
+    @NotBlank(message = "{course.level.notBlank}")
     private String level;
 
-    @NotNull(message = "La duración es obligatoria.")
-    @Min(value = 1, message = "La duración mínima es de 1 hora.")
-    @Max(value = 200, message = "La duración máxima es de 200 horas.")
+    @NotNull(message = "{course.duration.notNull}")
+    @Min(value = 1, message = "{course.duration.min}")
+    @Max(value = 200, message = "{course.duration.max}")
     private Integer durationInHours;
 
     public Course() {
