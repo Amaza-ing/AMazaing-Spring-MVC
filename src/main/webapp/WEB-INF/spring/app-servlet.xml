@@ -13,10 +13,10 @@
           https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Activa el soporte de Spring MVC basado en anotaciones -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!-- Busca automáticamente controladores, servicios y otros componentes -->
-    <context:component-scan base-package="com.amazaing.myproject" />
+    <context:component-scan base-package="com.amazaing.myproject"/>
 
     <!-- Conexión a MySQL -->
     <bean id="dataSource"
@@ -25,7 +25,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/courses?useSSL=false"/>
+                  value="jdbc:mysql://localhost:3306/coursesdb?sslMode=DISABLED&amp;allowPublicKeyRetrieval=true"/>
 
         <property name="username" value="root"/>
         <property name="password" value="123456"/>

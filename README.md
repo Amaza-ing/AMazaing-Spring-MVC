@@ -861,3 +861,25 @@ El navegador accede a la aplicación
 Spring MVC dirige la petición al controlador
 El controlador devuelve una vista JSP
 ```
+
+## Script de SQL
+
+```sql
+CREATE DATABASE IF NOT EXISTS coursesdb;
+USE coursesdb;
+
+CREATE TABLE IF NOT EXISTS courses (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(80) NOT NULL,
+    level VARCHAR(30) NOT NULL,
+    duration_in_hours INT NOT NULL
+);
+
+INSERT INTO courses (title, level, duration_in_hours)
+VALUES
+    ('Spring MVC desde cero', 'Inicial', 20),
+    ('Spring MVC con formularios', 'Intermedio', 15),
+    ('Spring MVC avanzado', 'Avanzado', 25);
+
+SELECT * FROM courses;
+```
