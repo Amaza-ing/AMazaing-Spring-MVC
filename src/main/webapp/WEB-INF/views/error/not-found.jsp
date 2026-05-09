@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -24,13 +24,16 @@
       <section class="card">
         <h1>${pageTitle}</h1>
 
-        <p class="message">No se ha encontrado ningún curso con el identificador ${courseId}.</p>
-
-        <p class="error">${errorMessage}</p>
+        <p class="message">La página que estás intentando abrir no existe.</p>
 
         <p>
-          <a class="button" href="${pageContext.request.contextPath}/courses">
-            Volver al listado de cursos
+          Comprueba la dirección o vuelve a una sección existente de la
+          aplicación.
+        </p>
+
+        <p>
+          <a class="button" href="${pageContext.request.contextPath}/home">
+            Volver al inicio
           </a>
         </p>
       </section>
