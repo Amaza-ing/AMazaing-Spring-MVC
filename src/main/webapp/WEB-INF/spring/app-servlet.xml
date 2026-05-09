@@ -18,6 +18,26 @@
     <!-- Busca automáticamente controladores, servicios y otros componentes -->
     <context:component-scan base-package="com.amazaing.myproject" />
 
+    <!-- Conexión a MySQL -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/courses?useSSL=false"/>
+
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <!-- Objeto de Spring para ejecutar SQL de forma sencilla -->
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <!-- Resolución de vistas JSP -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
