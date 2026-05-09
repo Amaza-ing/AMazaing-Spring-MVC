@@ -173,3 +173,24 @@ code {
     background-color: #d1d5db;
     text-decoration: none;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.toolbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.toolbar a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,65 @@
+body {
+    background-color: #111827;
+    color: #e5e7eb;
+}
+
+.header {
+    background-color: #020617;
+}
+
+.card {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+h1 {
+    color: #f9fafb;
+}
+
+.message {
+    color: #d1d5db;
+}
+
+.table th {
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+.table th,
+.table td {
+    border-bottom: 1px solid #374151;
+}
+
+.input {
+    background-color: #111827;
+    color: #f9fafb;
+    border-color: #4b5563;
+}
+
+.input:focus {
+    border-color: #60a5fa;
+}
+
+.secondary-button {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+.secondary-button:hover {
+    background-color: #4b5563;
+}
+
+code {
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+.success {
+    background-color: #064e3b;
+    border-color: #10b981;
+    color: #d1fae5;
+}
+
+.error {
+    color: #fca5a5;
+}
