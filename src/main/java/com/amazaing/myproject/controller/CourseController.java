@@ -31,13 +31,6 @@ public class CourseController {
     public String courseDetail(@RequestParam("id") Long id, Model model) {
         Course course = courseService.findById(id);
 
-        if (course == null) {
-            model.addAttribute("pageTitle", "Curso no encontrado");
-            model.addAttribute("courseId", id);
-
-            return "courses/not-found";
-        }
-
         model.addAttribute("pageTitle", course.getTitle());
         model.addAttribute("course", course);
 

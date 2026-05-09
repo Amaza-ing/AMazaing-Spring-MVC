@@ -1,6 +1,7 @@
 package com.amazaing.myproject.service;
 
 import com.amazaing.myproject.dao.CourseDao;
+import com.amazaing.myproject.exception.CourseNotFoundException;
 import com.amazaing.myproject.model.Course;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,13 @@ public class CourseService {
     }
 
     public Course findById(Long id) {
-        return courseDao.findById(id);
+        Course course = courseDao.findById(id);
+
+        if (course == null) {
+            throw new CourseNotFoundException(id);
+        }
+
+        return course;
     }
 
     public void save(Course course) {
