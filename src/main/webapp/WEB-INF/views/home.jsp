@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="${pageContext.response.locale.language}">
   <head>
     <meta charset="UTF-8" />
-    <title>${pageTitle}</title>
+    <title><spring:message code="home.title" /></title>
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/css/styles.css"
@@ -13,37 +14,48 @@
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="${pageContext.request.contextPath}/home">Inicio</a>
-        <a href="${pageContext.request.contextPath}/courses">Cursos</a>
-        <a href="${pageContext.request.contextPath}/about">Sobre el curso</a>
+        <a href="${pageContext.request.contextPath}/home">
+          <spring:message code="nav.home" />
+        </a>
+        <a href="${pageContext.request.contextPath}/courses">
+          <spring:message code="nav.courses" />
+        </a>
+        <a href="${pageContext.request.contextPath}/about">
+          <spring:message code="nav.about" />
+        </a>
       </nav>
+
+      <div class="toolbar">
+        <a href="${pageContext.request.contextPath}/home?lang=es">
+          <spring:message code="language.spanish" />
+        </a>
+        <a href="${pageContext.request.contextPath}/home?lang=en">
+          <spring:message code="language.english" />
+        </a>
+      </div>
     </header>
 
     <main class="container">
       <section class="card">
-        <h1>${pageTitle}</h1>
+        <h1>
+          <spring:message code="home.title" />
+        </h1>
 
-        <p class="message">${message}</p>
-
-        <p>
-          Estás viendo el contenido de:
-          <strong>${courseName}</strong>
+        <p class="message">
+          <spring:message code="home.message" />
         </p>
 
         <hr />
 
         <p>
-          Antes usamos un controlador clásico configurado manualmente en XML.
-        </p>
-
-        <p>
-          Ahora estamos usando controladores con anotaciones como
-          <code>@Controller</code> y <code>@GetMapping</code>.
+          <strong>
+            <spring:message code="home.courseName" />
+          </strong>
         </p>
 
         <p>
           <a class="button" href="${pageContext.request.contextPath}/courses">
-            Ver listado de cursos
+            <spring:message code="home.cta" />
           </a>
         </p>
       </section>

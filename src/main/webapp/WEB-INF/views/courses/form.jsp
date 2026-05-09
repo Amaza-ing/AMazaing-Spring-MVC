@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="${pageContext.response.locale.language}">
   <head>
     <meta charset="UTF-8" />
-    <title>${pageTitle}</title>
+    <title><spring:message code="form.title" /></title>
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/css/styles.css"
@@ -14,17 +15,27 @@
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="${pageContext.request.contextPath}/home">Inicio</a>
-        <a href="${pageContext.request.contextPath}/courses">Cursos</a>
-        <a href="${pageContext.request.contextPath}/about">Sobre el curso</a>
+        <a href="${pageContext.request.contextPath}/home">
+          <spring:message code="nav.home" />
+        </a>
+        <a href="${pageContext.request.contextPath}/courses">
+          <spring:message code="nav.courses" />
+        </a>
+        <a href="${pageContext.request.contextPath}/about">
+          <spring:message code="nav.about" />
+        </a>
       </nav>
     </header>
 
     <main class="container">
       <section class="card">
-        <h1>${pageTitle}</h1>
+        <h1>
+          <spring:message code="form.title" />
+        </h1>
 
-        <p class="message">Rellena los datos para crear un nuevo curso.</p>
+        <p class="message">
+          <spring:message code="form.message" />
+        </p>
 
         <form:form
           method="post"
@@ -33,36 +44,55 @@
           cssClass="form"
         >
           <div class="form-group">
-            <form:label path="title">Título</form:label>
+            <form:label path="title">
+              <spring:message code="form.field.title" />
+            </form:label>
+
             <form:input path="title" cssClass="input" />
             <form:errors path="title" cssClass="error" />
           </div>
 
           <div class="form-group">
-            <form:label path="level">Nivel</form:label>
+            <form:label path="level">
+              <spring:message code="form.field.level" />
+            </form:label>
+
             <form:select path="level" cssClass="input">
-              <form:option value="" label="Selecciona un nivel" />
-              <form:option value="Inicial" label="Inicial" />
-              <form:option value="Intermedio" label="Intermedio" />
-              <form:option value="Avanzado" label="Avanzado" />
+              <form:option value="">
+                <spring:message code="form.level.placeholder" />
+              </form:option>
+              <form:option value="Inicial">
+                <spring:message code="form.level.initial" />
+              </form:option>
+              <form:option value="Intermedio">
+                <spring:message code="form.level.intermediate" />
+              </form:option>
+              <form:option value="Avanzado">
+                <spring:message code="form.level.advanced" />
+              </form:option>
             </form:select>
             <form:errors path="level" cssClass="error" />
           </div>
 
           <div class="form-group">
-            <form:label path="durationInHours">Duración en horas</form:label>
+            <form:label path="durationInHours">
+              <spring:message code="form.field.duration" />
+            </form:label>
+
             <form:input path="durationInHours" type="number" cssClass="input" />
             <form:errors path="durationInHours" cssClass="error" />
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="button">Crear curso</button>
+            <button type="submit" class="button">
+              <spring:message code="form.submit" />
+            </button>
 
             <a
               class="secondary-button"
               href="${pageContext.request.contextPath}/courses"
             >
-              Cancelar
+              <spring:message code="form.cancel" />
             </a>
           </div>
         </form:form>
