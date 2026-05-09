@@ -18,6 +18,26 @@
     <!-- Busca automáticamente controladores, servicios y otros componentes -->
     <context:component-scan base-package="com.amazaing.myproject"/>
 
+    <!-- Internacionalización: archivos messages.properties -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <!-- Idioma por defecto y almacenamiento del idioma en sesión -->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="es" />
+    </bean>
+
+    <!-- Permite cambiar el idioma usando ?lang=es o ?lang=en -->
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
+
     <!-- Conexión a MySQL -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
