@@ -883,3 +883,11 @@ VALUES
 
 SELECT * FROM courses;
 ```
+
+## Cambiar el Encoding de los .properties
+
+File → Settings → Editor → File Encodings
+
+- Global Encoding: UTF-8
+- Project Encoding: UTF-8
+- Default encoding for properties files: UTF-8
