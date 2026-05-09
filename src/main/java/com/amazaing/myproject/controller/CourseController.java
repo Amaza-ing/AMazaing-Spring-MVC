@@ -3,20 +3,29 @@ package com.amazaing.myproject.controller;
 import com.amazaing.myproject.model.Course;
 import com.amazaing.myproject.service.CourseService;
 import jakarta.validation.Valid;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Locale;
+
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
 
     private final CourseService courseService;
+    private final MessageSource messageSource;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(
+            CourseService courseService,
+            MessageSource messageSource) {
+
         this.courseService = courseService;
+        this.messageSource = messageSource;
     }
 
     @GetMapping
@@ -59,9 +68,14 @@ public class CourseController {
 
         courseService.save(course);
 
-        redirectAttributes.addFlashAttribute(
-                "successMessage",
-                "Curso creado correctamente");
+        Locale locale = LocaleContextHolder.getLocale();
+
+        String successMessage = messageSource.getMessage(
+                "success.course.created",
+                null,
+                locale);
+
+        redirectAttributes.addFlashAttribute("successMessage", successMessage);
 
         return "redirect:/courses";
     }
