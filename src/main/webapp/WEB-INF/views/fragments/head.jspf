@@ -1,0 +1,14 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<c:set var="currentTheme" value="${empty sessionScope.theme ? 'light' : sessionScope.theme}" />
+
+<meta charset="UTF-8">
+
+<title><spring:message code="${pageTitleCode}" /></title>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
+
+<c:if test="${currentTheme == 'dark'}">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles-dark.css">
+</c:if>
