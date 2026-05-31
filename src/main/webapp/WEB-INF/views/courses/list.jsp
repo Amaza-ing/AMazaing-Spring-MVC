@@ -2,53 +2,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<c:set var="currentTheme" value="${empty sessionScope.theme ? 'light' : sessionScope.theme}" />
-
 <!DOCTYPE html>
 <html lang="${pageContext.response.locale.language}">
   <head>
-    <meta charset="UTF-8" />
-    <title><spring:message code="courses.list.title" /></title>
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/css/styles.css">
-
-    <c:if test="${currentTheme == 'dark'}">
-      <link
-        rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/css/styles-dark.css"
-      />
-    </c:if>
+    <%@ include file="/WEB-INF/views/fragments/head.jspf" %>
   </head>
   <body>
-    <header class="header">
-      <nav class="nav">
-        <a href="${pageContext.request.contextPath}/home">
-          <spring:message code="nav.home" />
-        </a>
-        <a href="${pageContext.request.contextPath}/courses">
-          <spring:message code="nav.courses" />
-        </a>
-        <a href="${pageContext.request.contextPath}/about">
-          <spring:message code="nav.about" />
-        </a>
-        <a href="${pageContext.request.contextPath}/theme/change?theme=light">
-          <spring:message code="theme.light" />
-        </a>
-        <a href="${pageContext.request.contextPath}/theme/change?theme=dark">
-          <spring:message code="theme.dark" />
-        </a>
-      </nav>
-
-      <div class="toolbar">
-        <a href="${pageContext.request.contextPath}/courses?lang=es">
-          <spring:message code="language.spanish" />
-        </a>
-        <a href="${pageContext.request.contextPath}/courses?lang=en">
-          <spring:message code="language.english" />
-        </a>
-      </div>
-    </header>
+    <%@ include file="/WEB-INF/views/fragments/header.jspf" %>
 
     <main class="container">
       <section class="card wide">
