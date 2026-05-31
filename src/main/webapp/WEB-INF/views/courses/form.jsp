@@ -44,15 +44,12 @@
               <form:option value="">
                 <spring:message code="form.level.placeholder" />
               </form:option>
-              <form:option value="Inicial">
-                <spring:message code="form.level.initial" />
-              </form:option>
-              <form:option value="Intermedio">
-                <spring:message code="form.level.intermediate" />
-              </form:option>
-              <form:option value="Avanzado">
-                <spring:message code="form.level.advanced" />
-              </form:option>
+
+              <c:forEach var="level" items="${courseLevels}">
+                <form:option value="${level}">
+                  ${level}
+                </form:option>
+              </c:forEach>
             </form:select>
             <form:errors path="level" cssClass="error" />
           </div>

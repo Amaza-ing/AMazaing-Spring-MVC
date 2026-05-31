@@ -1,6 +1,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <header class="header">
+  <div class="brand">
+    ${appName}
+  </div>
+
   <nav class="nav">
     <a href="${pageContext.request.contextPath}/home">
       <spring:message code="nav.home" />

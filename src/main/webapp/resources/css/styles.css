@@ -194,3 +194,9 @@ code {
 .toolbar a:hover {
     text-decoration: underline;
 }
+
+.brand {
+  color: white;
+  font-weight: bold;
+  margin-right: 24px;
+}
