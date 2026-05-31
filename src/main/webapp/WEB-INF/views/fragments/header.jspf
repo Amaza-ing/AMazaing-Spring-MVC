@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <header class="header">
   <nav class="nav">
     <a href="${pageContext.request.contextPath}/home">
