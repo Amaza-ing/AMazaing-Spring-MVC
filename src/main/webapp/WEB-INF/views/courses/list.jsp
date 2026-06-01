@@ -51,10 +51,30 @@
                   ${course.durationInHours}
                   <spring:message code="courses.hours" />
                 </td>
-                <td>
+                <td class="actions-cell">
                   <a href="${pageContext.request.contextPath}/courses/detail?id=${course.id}">
                     <spring:message code="courses.detail" />
                   </a>
+
+                  <a
+                    href="${pageContext.request.contextPath}/courses/edit?id=${course.id}"
+                  >
+                    <spring:message code="courses.edit" />
+                  </a>
+
+                  <form
+                    method="post"
+                    action="${pageContext.request.contextPath}/courses/delete"
+                    class="inline-form"
+                    onsubmit="return confirm('<spring:message code="courses.confirmDelete" />');"
+                  >
+
+                    <input type="hidden" name="id" value="${course.id}">
+
+                    <button type="submit" class="link-button">
+                        <spring:message code="courses.delete" />
+                    </button>
+                  </form>
                 </td>
               </tr>
             </c:forEach>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="${pageContext.response.locale.language}">
@@ -13,7 +14,7 @@
     <main class="container">
       <section class="card">
         <h1>
-          <spring:message code="form.title" />
+          <spring:message code="${pageTitle}" />
         </h1>
 
         <p class="message">
@@ -22,10 +23,12 @@
 
         <form:form
           method="post"
-          action="${pageContext.request.contextPath}/courses"
+          action="${pageContext.request.contextPath}${formAction}"
           modelAttribute="course"
           cssClass="form"
         >
+          <form:hidden path="id" />
+
           <div class="form-group">
             <form:label path="title">
               <spring:message code="form.field.title" />
@@ -65,7 +68,7 @@
 
           <div class="form-actions">
             <button type="submit" class="button">
-              <spring:message code="form.submit" />
+              <spring:message code="${submitCode}" />
             </button>
 
             <a
