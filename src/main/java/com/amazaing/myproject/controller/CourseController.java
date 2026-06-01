@@ -45,7 +45,7 @@ public class CourseController {
 
     @GetMapping
     public String listCourses(Model model) {
-        model.addAttribute("pageTitle", "Listado de cursos");
+        model.addAttribute("pageTitle", "courses.list.title");
         model.addAttribute("courses", courseService.findAll());
 
         return "courses/list";
@@ -63,7 +63,9 @@ public class CourseController {
 
     @GetMapping("/new")
     public String createCourse(Model model) {
-        model.addAttribute("pageTitle", "Crear nuevo curso");
+        model.addAttribute("pageTitleCode", "form.title");
+        model.addAttribute("formAction", "/courses");
+        model.addAttribute("submitCode", "form.submit");
         model.addAttribute("course", new Course());
 
         return "courses/form";
@@ -77,20 +79,19 @@ public class CourseController {
             RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("pageTitle", "Crear nuevo curso");
+            model.addAttribute("pageTitleCode", "form.title");
+            model.addAttribute("formAction", "/courses");
+            model.addAttribute("submitCode", "form.submit");
+
             return "courses/form";
         }
 
         courseService.save(course);
 
-        Locale locale = LocaleContextHolder.getLocale();
-
-        String successMessage = messageSource.getMessage(
-                "success.course.created",
-                null,
-                locale);
-
-        redirectAttributes.addFlashAttribute("successMessage", successMessage);
+        addFlashMessage(
+                redirectAttributes,
+                "success.course.created"
+        );
 
         return "redirect:/courses";
     }
