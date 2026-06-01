@@ -33,4 +33,19 @@ public class CourseService {
     public void save(Course course) {
         courseDao.save(course);
     }
+
+    public void update(Course course) {
+        Course currentCourse = findById(course.getId());
+
+        currentCourse.setTitle(course.getTitle());
+        currentCourse.setLevel(course.getLevel());
+        currentCourse.setDurationInHours(course.getDurationInHours());
+
+        courseDao.update(currentCourse);
+    }
+
+    public void deleteById(Long id) {
+        findById(id);
+        courseDao.deleteById(id);
+    }
 }
