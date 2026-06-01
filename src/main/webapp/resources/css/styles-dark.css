@@ -63,3 +63,11 @@ code {
 .error {
     color: #fca5a5;
 }
+
+.link-button {
+    color: #93c5fd;
+}
+
+.link-button:hover {
+    color: #bfdbfe;
+}

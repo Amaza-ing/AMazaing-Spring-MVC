@@ -200,3 +200,28 @@ code {
   font-weight: bold;
   margin-right: 24px;
 }
+
+.actions-cell {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.link-button {
+    border: none;
+    background: none;
+    color: #2563eb;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    text-decoration: underline;
+}
+
+.link-button:hover {
+    color: #1d4ed8;
+}
