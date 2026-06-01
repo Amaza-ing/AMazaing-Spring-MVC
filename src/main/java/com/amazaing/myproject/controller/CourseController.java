@@ -28,6 +28,21 @@ public class CourseController {
         this.messageSource = messageSource;
     }
 
+    private void addFlashMessage(
+            RedirectAttributes redirectAttributes,
+            String messageCode) {
+
+        Locale locale = LocaleContextHolder.getLocale();
+
+        String message = messageSource.getMessage(
+                messageCode,
+                null,
+                locale
+        );
+
+        redirectAttributes.addFlashAttribute("successMessage", message);
+    }
+
     @GetMapping
     public String listCourses(Model model) {
         model.addAttribute("pageTitle", "Listado de cursos");
@@ -76,6 +91,61 @@ public class CourseController {
                 locale);
 
         redirectAttributes.addFlashAttribute("successMessage", successMessage);
+
+        return "redirect:/courses";
+    }
+
+    @GetMapping("/edit")
+    public String showEditForm(
+            @RequestParam("id") Long id,
+            Model model) {
+
+        Course course = courseService.findById(id);
+
+        model.addAttribute("pageTitle", "courses.edit.title");
+        model.addAttribute("formAction", "/courses/update");
+        model.addAttribute("submitCode", "courses.update");
+        model.addAttribute("course", course);
+
+        return "courses/form";
+    }
+
+    @PostMapping("/update")
+    public String updateCourse(
+            @Valid @ModelAttribute("course") Course course,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("pageTitle", "courses.edit.title");
+            model.addAttribute("formAction", "/courses/update");
+            model.addAttribute("submitCode", "courses.update");
+
+            return "courses/form";
+        }
+
+        courseService.update(course);
+
+        addFlashMessage(
+                redirectAttributes,
+                "success.course.updated"
+        );
+
+        return "redirect:/courses";
+    }
+
+    @PostMapping("/delete")
+    public String deleteCourse(
+            @RequestParam("id") Long id,
+            RedirectAttributes redirectAttributes) {
+
+        courseService.deleteById(id);
+
+        addFlashMessage(
+                redirectAttributes,
+                "success.course.deleted"
+        );
 
         return "redirect:/courses";
     }
