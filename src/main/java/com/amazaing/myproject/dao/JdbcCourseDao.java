@@ -82,4 +82,31 @@ public class JdbcCourseDao implements CourseDao {
             course.setId(generatedId.longValue());
         }
     }
+
+    @Override
+    public void update(Course course) {
+        String sql = """
+                UPDATE courses
+                SET title = ?, level = ?, duration_in_hours = ?
+                WHERE id = ?
+                """;
+
+        jdbcTemplate.update(
+                sql,
+                course.getTitle(),
+                course.getLevel(),
+                course.getDurationInHours(),
+                course.getId()
+        );
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        String sql = """
+                DELETE FROM courses
+                WHERE id = ?
+                """;
+
+        jdbcTemplate.update(sql, id);
+    }
 }
