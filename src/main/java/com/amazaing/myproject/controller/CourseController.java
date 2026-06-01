@@ -63,7 +63,7 @@ public class CourseController {
 
     @GetMapping("/new")
     public String createCourse(Model model) {
-        model.addAttribute("pageTitleCode", "form.title");
+        model.addAttribute("pageTitle", "form.title");
         model.addAttribute("formAction", "/courses");
         model.addAttribute("submitCode", "form.submit");
         model.addAttribute("course", new Course());
@@ -79,7 +79,7 @@ public class CourseController {
             RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("pageTitleCode", "form.title");
+            model.addAttribute("pageTitle", "form.title");
             model.addAttribute("formAction", "/courses");
             model.addAttribute("submitCode", "form.submit");
 
