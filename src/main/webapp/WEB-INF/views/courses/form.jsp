@@ -27,6 +27,11 @@
           modelAttribute="course"
           cssClass="form"
         >
+
+          <c:if test="${formMethod == 'put'}">
+              <input type="hidden" name="_method" value="put">
+          </c:if>
+
           <form:hidden path="id" />
 
           <div class="form-group">
