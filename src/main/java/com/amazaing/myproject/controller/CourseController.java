@@ -128,6 +128,8 @@ public class CourseController {
             Model model,
             RedirectAttributes redirectAttributes) {
 
+        course.setId(id);
+
         if (bindingResult.hasErrors()) {
             prepareEditForm(model, course);
             return "courses/form";
@@ -143,7 +145,7 @@ public class CourseController {
         return "redirect:/courses";
     }
 
-    @DeleteMapping("/{id}}")
+    @DeleteMapping("/{id}")
     public String deleteCourse(
             @PathVariable Long id,
             RedirectAttributes redirectAttributes) {
