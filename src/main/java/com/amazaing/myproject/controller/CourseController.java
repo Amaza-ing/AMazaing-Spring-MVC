@@ -43,6 +43,22 @@ public class CourseController {
         redirectAttributes.addFlashAttribute("successMessage", message);
     }
 
+    private void prepareCreateForm(Model model, Course course) {
+        model.addAttribute("pageTitle", "form.title");
+        model.addAttribute("formAction", "/courses");
+        model.addAttribute("formMethod", "post");
+        model.addAttribute("submitCode", "form.submit");
+        model.addAttribute("course", course);
+    }
+
+    private void prepareEditForm(Model model, Course course) {
+        model.addAttribute("pageTitle", "courses.edit.title");
+        model.addAttribute("formAction", "/courses/" + course.getId());
+        model.addAttribute("formMethod", "put");
+        model.addAttribute("submitCode", "courses.update");
+        model.addAttribute("course", course);
+    }
+
     @GetMapping
     public String listCourses(Model model) {
         model.addAttribute("pageTitle", "courses.list.title");
@@ -51,8 +67,10 @@ public class CourseController {
         return "courses/list";
     }
 
-    @GetMapping("/detail")
-    public String courseDetail(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/{id}")
+    public String courseDetail(
+            @PathVariable Long id,
+            Model model) {
         Course course = courseService.findById(id);
 
         model.addAttribute("pageTitle", course.getTitle());
@@ -63,10 +81,7 @@ public class CourseController {
 
     @GetMapping("/new")
     public String createCourse(Model model) {
-        model.addAttribute("pageTitle", "form.title");
-        model.addAttribute("formAction", "/courses");
-        model.addAttribute("submitCode", "form.submit");
-        model.addAttribute("course", new Course());
+        prepareCreateForm(model, new Course());
 
         return "courses/form";
     }
@@ -79,10 +94,7 @@ public class CourseController {
             RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("pageTitle", "form.title");
-            model.addAttribute("formAction", "/courses");
-            model.addAttribute("submitCode", "form.submit");
-
+            prepareCreateForm(model, course);
             return "courses/form";
         }
 
@@ -96,33 +108,28 @@ public class CourseController {
         return "redirect:/courses";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/{id}/edit")
     public String showEditForm(
-            @RequestParam("id") Long id,
+            @PathVariable Long id,
             Model model) {
 
         Course course = courseService.findById(id);
 
-        model.addAttribute("pageTitle", "courses.edit.title");
-        model.addAttribute("formAction", "/courses/update");
-        model.addAttribute("submitCode", "courses.update");
-        model.addAttribute("course", course);
+        prepareEditForm(model, course);
 
         return "courses/form";
     }
 
-    @PostMapping("/update")
+    @PutMapping("/{id}")
     public String updateCourse(
+            @PathVariable Long id,
             @Valid @ModelAttribute("course") Course course,
             BindingResult bindingResult,
             Model model,
             RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("pageTitle", "courses.edit.title");
-            model.addAttribute("formAction", "/courses/update");
-            model.addAttribute("submitCode", "courses.update");
-
+            prepareEditForm(model, course);
             return "courses/form";
         }
 
@@ -136,9 +143,9 @@ public class CourseController {
         return "redirect:/courses";
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/{id}}")
     public String deleteCourse(
-            @RequestParam("id") Long id,
+            @PathVariable Long id,
             RedirectAttributes redirectAttributes) {
 
         courseService.deleteById(id);
