@@ -69,7 +69,7 @@ public class CourseController {
 
     @GetMapping("/{id}")
     public String courseDetail(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             Model model) {
         Course course = courseService.findById(id);
 
@@ -110,10 +110,18 @@ public class CourseController {
 
     @GetMapping("/{id}/edit")
     public String showEditForm(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             Model model) {
 
-        Course course = courseService.findById(id);
+        Course course;
+
+        if (model.containsAttribute("course")) {
+            course = (Course) model.asMap().get("course");
+        } else {
+            course = courseService.findById(id);
+        }
+
+        course.setId(id);
 
         prepareEditForm(model, course);
 
@@ -122,17 +130,22 @@ public class CourseController {
 
     @PutMapping("/{id}")
     public String updateCourse(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @ModelAttribute("course") Course course,
             BindingResult bindingResult,
-            Model model,
             RedirectAttributes redirectAttributes) {
 
         course.setId(id);
 
         if (bindingResult.hasErrors()) {
-            prepareEditForm(model, course);
-            return "courses/form";
+            redirectAttributes.addFlashAttribute("course", course);
+
+            redirectAttributes.addFlashAttribute(
+                    BindingResult.MODEL_KEY_PREFIX + "course",
+                    bindingResult
+            );
+
+            return "redirect:/courses/" + id + "/edit";
         }
 
         courseService.update(course);
@@ -147,7 +160,7 @@ public class CourseController {
 
     @DeleteMapping("/{id}")
     public String deleteCourse(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             RedirectAttributes redirectAttributes) {
 
         courseService.deleteById(id);

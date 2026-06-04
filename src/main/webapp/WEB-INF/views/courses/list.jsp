@@ -56,9 +56,7 @@
                     <spring:message code="courses.detail" />
                   </a>
 
-                  <a
-                    <a href="${pageContext.request.contextPath}/courses/${course.id}/edit">
-                  >
+                  <a href="${pageContext.request.contextPath}/courses/${course.id}/edit">
                     <spring:message code="courses.edit" />
                   </a>
 
