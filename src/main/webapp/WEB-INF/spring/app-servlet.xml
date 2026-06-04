@@ -13,7 +13,7 @@
           https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Activa el soporte de Spring MVC basado en anotaciones -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven validator="validator" />
 
     <!-- Busca automáticamente controladores, servicios y otros componentes -->
     <context:component-scan base-package="com.amazaing.myproject"/>
@@ -26,6 +26,11 @@
           class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
     <!-- Idioma por defecto y almacenamiento del idioma en sesión -->
